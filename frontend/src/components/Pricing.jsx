@@ -118,7 +118,7 @@ export default function Pricing() {
                 </ul>
 
                 <a
-                  href="#contact"
+                  href="https://post.scoliax.fr"
                   className={`mt-8 rounded-full px-6 py-3 text-sm font-medium text-center ${t.highlighted ? "btn-orange" : "btn-ghost"}`}
                   data-testid={`pricing-cta-${t.name.toLowerCase()}`}
                 >

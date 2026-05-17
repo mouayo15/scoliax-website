@@ -58,11 +58,11 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="#contact" className="text-sm muted" data-testid="nav-login">
+          <a href="https://post.scoliax.fr" className="text-sm muted" data-testid="nav-login">
             Connexion
           </a>
           <a
-            href="#pricing"
+            href="https://post.scoliax.fr"
             className="btn-orange rounded-full px-5 py-2.5 text-sm font-medium"
             data-testid="nav-cta-primary"
           >
@@ -100,7 +100,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#pricing"
+              href="https://post.scoliax.fr"
               onClick={() => setOpen(false)}
               className="btn-orange rounded-full px-5 py-2.5 text-sm text-center"
             >

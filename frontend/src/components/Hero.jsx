@@ -244,7 +244,7 @@ export default function Hero() {
           <FadeIn delay={320}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href="#pricing"
+                href="https://post.scoliax.fr"
                 className="btn-orange rounded-full px-7 py-3.5 text-sm font-medium inline-flex items-center gap-2"
                 data-testid="hero-cta-primary"
               >
