@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0F0D0B;
+  --bg-card: #181410;
+  --bg-deep: #1C1611;
+  --orange: #D4720A;
+  --orange-dark: #B35F08;
+  --text: #FAFAF8;
+  --text-muted: rgba(250, 250, 248, 0.55);
+  --text-faint: rgba(250, 250, 248, 0.35);
+  --border: rgba(212, 114, 10, 0.25);
+  --border-soft: rgba(250, 250, 248, 0.08);
+  --halo: rgba(212, 114, 10, 0.35);
+  --grad: linear-gradient(135deg, #D4720A, #B35F08);
+}
+
+@layer base {
+  :root {
+    --background: 24 18% 6%;
+    --foreground: 40 33% 97%;
+    --card: 24 18% 8%;
+    --card-foreground: 40 33% 97%;
+    --popover: 24 18% 8%;
+    --popover-foreground: 40 33% 97%;
+    --primary: 27 92% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 24 18% 10%;
+    --secondary-foreground: 40 33% 97%;
+    --muted: 24 18% 10%;
+    --muted-foreground: 40 10% 65%;
+    --accent: 27 92% 44%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 27 92% 24%;
+    --input: 24 18% 10%;
+    --ring: 27 92% 44%;
+    --radius: 0.75rem;
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--orange);
+  color: white;
+}
+
+/* Subtle warm grain texture across the page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(212, 114, 10, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(212, 114, 10, 0.06), transparent 60%);
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1);
+}
+.fade-up.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-10px) rotate(1deg); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) rotate(8deg); opacity: 0.55; }
+  50%  { transform: translate(20px, -30px) rotate(14deg); opacity: 0.8; }
+  100% { transform: translate(0, 0) rotate(8deg); opacity: 0.55; }
+}
+.drift { animation: drift 14s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #FAFAF8 0%, #FAFAF8 40%, #D4720A 50%, #FAFAF8 60%, #FAFAF8 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(212, 114, 10, 0.55); }
+  70%  { box-shadow: 0 0 0 22px rgba(212, 114, 10, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 114, 10, 0); }
+}
+.pulse-ring { animation: pulseRing 2.4s ease-out infinite; }
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+.spin-slow { animation: spinSlow 10s linear infinite; }
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret { animation: blink 1s steps(2) infinite; }
+
+/* Gradient button */
+.btn-orange {
+  background: var(--grad);
+  color: white;
+  border: 0;
+  transition: transform .2s ease, box-shadow .3s ease, filter .2s ease;
+  box-shadow: 0 10px 30px -10px rgba(212, 114, 10, 0.6);
+}
+.btn-orange:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 40px -12px rgba(212, 114, 10, 0.75);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(250, 250, 248, 0.18);
+  color: var(--text);
+  transition: all .2s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.card-surface {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+}
+
+.card-surface-orange {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: 40px;
+  line-height: 1.05;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .section-title { font-size: 30px; }
+}
+
+.muted { color: var(--text-muted); }
+
+.glow-orange {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  background: radial-gradient(circle, rgba(212, 114, 10, 0.5), transparent 70%);
+  pointer-events: none;
+}
+
+/* Input focus */
+.input-dark {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 12px 14px;
+  width: 100%;
+  transition: border-color .2s, box-shadow .2s;
+  font-size: 14px;
+  font-family: inherit;
+}
+.input-dark::placeholder {
+  color: rgba(250, 250, 248, 0.35);
+}
+.input-dark:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(212, 114, 10, 0.25);
+}
+
+/* Tilted logo-echo card */
+.tilt-card {
+  position: relative;
+  border-radius: 14px;
+}
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px -6px -6px 6px;
+  background: var(--orange);
+  border-radius: 14px;
+  z-index: -1;
+  transform: rotate(-6deg);
+}
+
+/* Faded huge numerals */
+.huge-num {
+  font-size: 220px;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 114, 10, 0.20);
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 768px) {
+  .huge-num { font-size: 120px; }
+}
+
+/* Dashed orange connector */
+.dashed-connector {
+  background-image: linear-gradient(to right, rgba(212,114,10,0.5) 50%, transparent 0);
+  background-size: 14px 2px;
+  background-repeat: repeat-x;
+  background-position: center;
+  height: 2px;
+}
