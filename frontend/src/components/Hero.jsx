@@ -251,7 +251,7 @@ export default function Hero() {
                 Essayer gratuitement <ArrowRight size={16} />
               </a>
               <a
-                href="#process"
+                href="#contact"
                 className="btn-ghost rounded-full px-6 py-3.5 text-sm font-medium inline-flex items-center gap-2"
                 data-testid="hero-cta-secondary"
               >
