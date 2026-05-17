@@ -40,6 +40,29 @@ export const SectionLabel = ({ children, testId }) => (
 export const LOGO_URL =
   "https://customer-assets.emergentagent.com/job_scoliax-launch/artifacts/hpjrcog9_scoliax-marketing-logo%20%281%29.png";
 
+// Generated example marketing images (Gemini Nano Banana)
+export const AD_IMAGES = [
+  "/images/ad_fashion.jpg",
+  "/images/ad_restaurant.jpg",
+  "/images/ad_saas.jpg",
+  "/images/ad_fitness.jpg",
+  "/images/ad_beauty.jpg",
+  "/images/ad_travel.jpg",
+  "/images/ad_realestate.jpg",
+  "/images/ad_coffee.jpg",
+];
+export const CONCEPT_IMAGES = {
+  launch: "/images/concept_launch.jpg",
+  flash: "/images/concept_flash.jpg",
+  testimonial: "/images/concept_testimonial.jpg",
+};
+export const GENERATED_AD_HERO = "/images/generated_ad_hero.jpg";
+export const AVATARS = {
+  camille: "/images/avatar_camille.jpg",
+  adrien: "/images/avatar_adrien.jpg",
+  lea: "/images/avatar_lea.jpg",
+};
+
 // Brand SVG icons (platform icons used in mockup) — using lucide where possible
 export const PlatformDot = ({ label, color, children }) => (
   <div

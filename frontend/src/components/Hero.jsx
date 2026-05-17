@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight, PlayCircle, Instagram, Twitter, Linkedin } from "lucide-react";
-import { FadeIn, SectionLabel } from "./common";
+import { FadeIn, SectionLabel, AD_IMAGES } from "./common";
 
 // Small tilted orange squares (logo echo) for the background
 const FloatingSquares = () => (
@@ -37,16 +37,16 @@ const FloatingSquares = () => (
 const DashboardMockup = () => {
   const days = ["LUN", "MAR", "MER", "JEU", "VEN"];
   const slots = [
-    { day: 0, time: "09:00", platform: "IG", color: "#E4405F" },
-    { day: 0, time: "14:00", platform: "X", color: "#1da1f2" },
-    { day: 1, time: "10:30", platform: "IN", color: "#0a66c2" },
-    { day: 1, time: "17:00", platform: "TT", color: "#000" },
-    { day: 2, time: "08:00", platform: "IG", color: "#E4405F" },
-    { day: 2, time: "13:00", platform: "X", color: "#1da1f2" },
-    { day: 3, time: "11:00", platform: "IN", color: "#0a66c2" },
-    { day: 3, time: "19:00", platform: "TT", color: "#000" },
-    { day: 4, time: "09:30", platform: "IG", color: "#E4405F" },
-    { day: 4, time: "16:00", platform: "X", color: "#1da1f2" },
+    { day: 0, time: "09:00", platform: "IG", color: "#E4405F", img: AD_IMAGES[0] },
+    { day: 0, time: "14:00", platform: "X",  color: "#1da1f2", img: AD_IMAGES[2] },
+    { day: 1, time: "10:30", platform: "IN", color: "#0a66c2", img: AD_IMAGES[4] },
+    { day: 1, time: "17:00", platform: "TT", color: "#000",    img: AD_IMAGES[3] },
+    { day: 2, time: "08:00", platform: "IG", color: "#E4405F", img: AD_IMAGES[1] },
+    { day: 2, time: "13:00", platform: "X",  color: "#1da1f2", img: AD_IMAGES[7] },
+    { day: 3, time: "11:00", platform: "IN", color: "#0a66c2", img: AD_IMAGES[6] },
+    { day: 3, time: "19:00", platform: "TT", color: "#000",    img: AD_IMAGES[5] },
+    { day: 4, time: "09:30", platform: "IG", color: "#E4405F", img: AD_IMAGES[0] },
+    { day: 4, time: "16:00", platform: "X",  color: "#1da1f2", img: AD_IMAGES[2] },
   ];
 
   return (
@@ -118,14 +118,27 @@ const DashboardMockup = () => {
                       border: "1px solid rgba(212,114,10,0.18)",
                     }}
                   >
-                    {/* fake image */}
+                    {/* generated ad image */}
+                    <img
+                      src={s.img}
+                      alt=""
+                      loading="lazy"
+                      style={{
+                        position: "absolute",
+                        inset: 4,
+                        width: "calc(100% - 8px)",
+                        height: "calc(100% - 8px)",
+                        objectFit: "cover",
+                        borderRadius: 6,
+                      }}
+                    />
                     <div
                       style={{
                         position: "absolute",
-                        inset: 6,
+                        inset: 4,
                         borderRadius: 6,
                         background:
-                          "radial-gradient(60% 60% at 30% 30%, rgba(212,114,10,0.35), rgba(28,22,17,0.6))",
+                          "linear-gradient(180deg, rgba(15,13,11,0) 35%, rgba(15,13,11,0.85) 100%)",
                       }}
                     />
                     <div

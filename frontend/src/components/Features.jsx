@@ -13,7 +13,7 @@ import {
   Facebook,
   ArrowRight,
 } from "lucide-react";
-import { FadeIn, SectionLabel } from "./common";
+import { FadeIn, SectionLabel, AD_IMAGES, CONCEPT_IMAGES, GENERATED_AD_HERO } from "./common";
 
 /* ------------- Feature: AI Campaign Generator ------------- */
 const CampaignGenerator = () => (
@@ -97,9 +97,9 @@ const CampaignGenerator = () => (
           <div className="text-[10px] tag mb-3">03 · CONCEPTS</div>
           <div className="flex gap-2">
             {[
-              { title: "Lancement", tint: "rgba(212,114,10,0.35)" },
-              { title: "Offre flash", tint: "rgba(212,114,10,0.25)" },
-              { title: "Témoignage", tint: "rgba(212,114,10,0.18)" },
+              { title: "Lancement", img: CONCEPT_IMAGES.launch },
+              { title: "Offre flash", img: CONCEPT_IMAGES.flash },
+              { title: "Témoignage", img: CONCEPT_IMAGES.testimonial },
             ].map((c, i) => (
               <div
                 key={i}
@@ -112,8 +112,10 @@ const CampaignGenerator = () => (
               >
                 <div
                   style={{
-                    height: 70,
-                    background: `radial-gradient(120% 80% at 30% 20%, ${c.tint}, transparent 70%), #1C1611`,
+                    height: 90,
+                    backgroundImage: `url(${c.img})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                   }}
                 />
                 <div className="p-2.5">
@@ -133,15 +135,16 @@ const CampaignGenerator = () => (
 
 /* ------------- Feature: Brand Template Library ------------- */
 const TemplateLibrary = () => {
+  // Each card: img (or null for empty), label (badge text), hover (highlighted state)
   const cards = [
-    { label: "AI", filled: true },
-    { label: "", filled: true },
-    { label: "Default", filled: true },
-    { label: "", filled: false, hover: true },
-    { label: "AI", filled: true },
-    { label: "", filled: true },
-    { label: "", filled: false },
-    { label: "", filled: true },
+    { img: AD_IMAGES[0], label: "AI" },
+    { img: AD_IMAGES[1], label: "" },
+    { img: AD_IMAGES[2], label: "Default" },
+    { img: null,         label: "", hover: true },
+    { img: AD_IMAGES[4], label: "AI" },
+    { img: AD_IMAGES[5], label: "" },
+    { img: null,         label: "" },
+    { img: AD_IMAGES[7], label: "" },
   ];
   return (
     <FadeIn>
@@ -160,26 +163,33 @@ const TemplateLibrary = () => {
               className="relative rounded-xl overflow-hidden"
               style={{
                 aspectRatio: "1 / 1",
-                background: c.filled
-                  ? `radial-gradient(120% 80% at ${30 + (i % 3) * 20}% ${20 + (i % 4) * 12}%, rgba(212,114,10,${0.18 + (i % 5) * 0.05}), #1C1611)`
-                  : "#0F0D0B",
+                background: "#0F0D0B",
                 border: c.hover ? "1px solid var(--orange)" : "1px solid rgba(250,250,248,0.06)",
                 boxShadow: c.hover ? "0 0 0 4px rgba(212,114,10,0.25)" : "none",
               }}
             >
+              {c.img && (
+                <img
+                  src={c.img}
+                  alt=""
+                  loading="lazy"
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              )}
               {c.label && (
                 <span
-                  className="absolute top-2 left-2 text-[9px] px-2 py-0.5 rounded-full font-semibold"
+                  className="absolute top-2 left-2 text-[9px] px-2 py-0.5 rounded-full font-semibold z-10"
                   style={{
-                    background: c.label === "Default" ? "rgba(255,255,255,0.1)" : "linear-gradient(135deg, #D4720A, #B35F08)",
-                    color: c.label === "Default" ? "rgba(255,255,255,0.7)" : "white",
+                    background: c.label === "Default" ? "rgba(15,13,11,0.7)" : "linear-gradient(135deg, #D4720A, #B35F08)",
+                    color: c.label === "Default" ? "rgba(255,255,255,0.85)" : "white",
                     letterSpacing: "0.1em",
+                    backdropFilter: c.label === "Default" ? "blur(8px)" : "none",
                   }}
                 >
                   {c.label}
                 </span>
               )}
-              {!c.filled && (
+              {!c.img && (
                 <div className="absolute inset-0 flex items-center justify-center muted text-2xl font-light">
                   +
                 </div>
@@ -237,12 +247,23 @@ const MultiChannel = () => {
                 >
                   <div className="text-[10px] muted">{["09:00", "10:30", "12:00", "Aujourd'hui", "15:00", "17:30", "19:00"][i]}</div>
                   <div
-                    className="mt-2 rounded"
-                    style={{
-                      height: 28,
-                      background: "linear-gradient(135deg, rgba(212,114,10,0.4), rgba(28,22,17,0.6))",
-                    }}
-                  />
+                    className="mt-2 rounded overflow-hidden relative"
+                    style={{ height: 36 }}
+                  >
+                    <img
+                      src={AD_IMAGES[i % AD_IMAGES.length]}
+                      alt=""
+                      loading="lazy"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "linear-gradient(180deg, rgba(15,13,11,0) 40%, rgba(15,13,11,0.6) 100%)",
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -305,11 +326,24 @@ const ImageGen = () => (
             className="rounded-xl relative overflow-hidden"
             style={{
               aspectRatio: "4 / 3",
-              background: "radial-gradient(60% 60% at 30% 30%, rgba(212,114,10,0.45), #1C1611)",
               border: "1px solid rgba(212,114,10,0.35)",
             }}
           >
-            <div className="absolute bottom-5 left-5 right-5">
+            <img
+              src={GENERATED_AD_HERO}
+              alt="Visuel généré par l'IA — Campagne Hiver 2026"
+              loading="lazy"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(180deg, rgba(15,13,11,0) 30%, rgba(15,13,11,0.92) 100%)",
+              }}
+            />
+            <div className="absolute bottom-5 left-5 right-5 z-10">
               <div className="text-[10px] tag mb-1">Campagne Hiver 2026</div>
               <div className="text-white font-bold text-lg leading-tight">
                 Reprenez le contrôle de votre contenu.

@@ -1,5 +1,5 @@
 import React from "react";
-import { FadeIn, SectionLabel } from "./common";
+import { FadeIn, SectionLabel, AVATARS } from "./common";
 
 const items = [
   {
@@ -7,21 +7,21 @@ const items = [
     role: "Directrice marketing — Maison Lumière",
     quote:
       "Scoliax a réduit notre temps de production de campagnes de 80%. Les visuels restent fidèles à notre charte, même sans designer.",
-    initials: "CR",
+    avatar: AVATARS.camille,
   },
   {
     name: "Adrien Vasseur",
     role: "Fondateur — Atelier Nord",
     quote:
       "On publie six fois plus sur LinkedIn et Instagram, avec un engagement multiplié par trois. C'est tout ce qu'on attendait d'un outil IA.",
-    initials: "AV",
+    avatar: AVATARS.adrien,
   },
   {
     name: "Léa Mercier",
     role: "Head of growth — Olives & Sel",
     quote:
       "Le générateur de campagnes est bluffant. Une URL, trois concepts, prêts à programmer. Notre rituel hebdo a complètement changé.",
-    initials: "LM",
+    avatar: AVATARS.lea,
   },
 ];
 
@@ -64,17 +64,18 @@ export default function Testimonials() {
                   {t.quote}
                 </p>
                 <div className="mt-6 flex items-center gap-3">
-                  <div
-                    className="rounded-full flex items-center justify-center text-sm font-semibold"
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    loading="lazy"
                     style={{
-                      width: 40,
-                      height: 40,
-                      background: "linear-gradient(135deg, #D4720A, #B35F08)",
-                      color: "white",
+                      width: 44,
+                      height: 44,
+                      borderRadius: 999,
+                      objectFit: "cover",
+                      border: "1.5px solid rgba(212,114,10,0.45)",
                     }}
-                  >
-                    {t.initials}
-                  </div>
+                  />
                   <div>
                     <div className="text-sm font-semibold" style={{ color: "var(--text)" }}>{t.name}</div>
                     <div className="text-xs muted">{t.role}</div>
