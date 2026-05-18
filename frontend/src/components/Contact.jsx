@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-import { Mail, MessageCircle, Send, Twitter, Loader2 } from "lucide-react";
+import { Mail, MessageCircle, Send, Loader2 } from "lucide-react";
 import { FadeIn, SectionLabel } from "./common";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -68,7 +68,6 @@ export default function Contact() {
               <div className="mt-10 space-y-5">
                 {[
                   { icon: <Mail size={16} />, label: "Email", value: "contact@scoliax.com" },
-                  { icon: <Twitter size={16} />, label: "X (Twitter)", value: "@scoliax" },
                   { icon: <MessageCircle size={16} />, label: "Discord", value: "discord.gg/scoliax" },
                 ].map((c) => (
                   <div key={c.label} className="flex items-center gap-4" data-testid={`contact-info-${c.label.toLowerCase()}`}>
