@@ -1,5 +1,5 @@
 import React from "react";
-import { Twitter, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 import { LOGO_URL } from "./common";
 
 const navLinks = [
@@ -54,8 +54,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-3">
             {[
-              { icon: <Twitter size={14} />, label: "X", href: "#" },
-              { icon: <Instagram size={14} />, label: "Instagram", href: "https://www.instagram.com/scoliax/" },
+{ icon: <Instagram size={14} />, label: "Instagram", href: "https://www.instagram.com/scoliax/" },
               { icon: <Linkedin size={14} />, label: "LinkedIn", href: "https://www.linkedin.com/company/scoliax/" },
               { icon: <Facebook size={14} />, label: "Facebook", href: "https://www.facebook.com/people/Scoliax/61586346208622/" },
             ].map((s) => (
