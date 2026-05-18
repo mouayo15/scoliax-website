@@ -147,8 +147,8 @@ const TemplateLibrary = () => {
     { img: AD_IMAGES[7], label: "" },
   ];
   return (
-    <FadeIn>
-      <div className="card-surface p-7 lg:p-10" style={{ borderRadius: 20 }} data-testid="feature-templates">
+    <FadeIn className="h-full">
+      <div className="card-surface p-7 lg:p-10 h-full" style={{ borderRadius: 20 }} data-testid="feature-templates">
         <SectionLabel>Bibliothèque de templates</SectionLabel>
         <h3 className="section-title mt-3">Votre identité, multipliée par l'IA.</h3>
         <p className="mt-3 muted max-w-xl">
@@ -214,8 +214,8 @@ const MultiChannel = () => {
     { name: "YT", color: "#FF0000", icon: <Youtube size={12} color="white" /> },
   ];
   return (
-    <FadeIn>
-      <div className="card-surface p-7 lg:p-10" style={{ borderRadius: 20 }} data-testid="feature-channels">
+    <FadeIn className="h-full">
+      <div className="card-surface p-7 lg:p-10 h-full" style={{ borderRadius: 20 }} data-testid="feature-channels">
         <SectionLabel>Planification multi-canal</SectionLabel>
         <h3 className="section-title mt-3">Un seul tableau. Sept plateformes.</h3>
         <p className="mt-3 muted max-w-xl">
@@ -359,8 +359,8 @@ const ImageGen = () => (
 
 /* ------------- Feature: Post Studio ------------- */
 const PostStudio = () => (
-  <FadeIn>
-    <div className="card-surface p-7 lg:p-10" style={{ borderRadius: 20 }} data-testid="feature-studio">
+  <FadeIn className="h-full">
+    <div className="card-surface p-7 lg:p-10 h-full" style={{ borderRadius: 20 }} data-testid="feature-studio">
       <SectionLabel>Studio de publication</SectionLabel>
       <h3 className="section-title mt-3">Écrivez moins. Publiez plus.</h3>
       <p className="mt-3 muted max-w-xl">
@@ -452,8 +452,8 @@ const Analytics = () => {
   const area = `${path} L${pad + (pts.length - 1) * stepX},${h - pad} L${pad},${h - pad} Z`;
 
   return (
-    <FadeIn>
-      <div className="card-surface p-7 lg:p-10" style={{ borderRadius: 20 }} data-testid="feature-analytics">
+    <FadeIn className="h-full">
+      <div className="card-surface p-7 lg:p-10 h-full" style={{ borderRadius: 20 }} data-testid="feature-analytics">
         <SectionLabel>Analytics</SectionLabel>
         <h3 className="section-title mt-3">Mesurez ce qui compte vraiment.</h3>
         <p className="mt-3 muted max-w-xl">
