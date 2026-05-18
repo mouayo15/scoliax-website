@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Settings, Sparkles, Rocket } from "lucide-react";
 import { FadeIn, SectionLabel } from "./common";
 
@@ -24,6 +24,18 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.25 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section id="process" className="relative py-24 lg:py-32 px-5 lg:px-8" data-testid="how-it-works-section">
       <div className="max-w-7xl mx-auto">
@@ -34,25 +46,45 @@ export default function HowItWorks() {
           </div>
         </FadeIn>
 
-        <div className="relative grid lg:grid-cols-3 gap-10 lg:gap-6">
-          {/* dashed connectors */}
+        <div ref={ref} className="relative grid lg:grid-cols-3 gap-10 lg:gap-6">
+          {/* Animated dashed connector */}
           <div className="hidden lg:block absolute top-[64px] left-[18%] right-[18%]">
-            <div className="dashed-connector" />
+            <div
+              className={visible ? "connector-grow" : ""}
+              style={{ transformOrigin: "left", transform: visible ? undefined : "scaleX(0)" }}
+            >
+              <div className="dashed-connector" />
+            </div>
           </div>
 
           {steps.map((s, i) => (
-            <FadeIn key={s.n} delay={i * 120}>
-              <div className="relative text-center px-2">
+            <div
+              key={s.n}
+              className="relative text-center px-2"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(28px)",
+                transition: `opacity 0.7s cubic-bezier(.2,.7,.2,1) ${i * 160}ms, transform 0.7s cubic-bezier(.2,.7,.2,1) ${i * 160}ms`,
+              }}
+            >
+              <div
+                className="huge-num absolute"
+                style={{ top: -40, left: "50%", transform: "translateX(-50%)", zIndex: 0 }}
+                aria-hidden
+              >
+                {s.n}
+              </div>
+              <div className="relative z-10 flex flex-col items-center">
                 <div
-                  className="huge-num absolute"
-                  style={{ top: -40, left: "50%", transform: "translateX(-50%)", zIndex: 0 }}
-                  aria-hidden
+                  className={visible ? "icon-pop" : ""}
+                  style={{
+                    animationDelay: `${i * 160 + 200}ms`,
+                    borderRadius: "50%",
+                    marginBottom: 24,
+                  }}
                 >
-                  {s.n}
-                </div>
-                <div className="relative z-10 flex flex-col items-center">
                   <div
-                    className="rounded-full flex items-center justify-center mb-6"
+                    className="rounded-full flex items-center justify-center"
                     style={{
                       width: 64, height: 64,
                       background: "linear-gradient(135deg, #D4720A, #B35F08)",
@@ -61,13 +93,13 @@ export default function HowItWorks() {
                   >
                     {s.icon}
                   </div>
-                  <h3 className="text-xl font-semibold" style={{ color: "var(--text)" }}>
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 muted text-sm max-w-xs">{s.desc}</p>
                 </div>
+                <h3 className="text-xl font-semibold" style={{ color: "var(--text)" }}>
+                  {s.title}
+                </h3>
+                <p className="mt-3 muted text-sm max-w-xs">{s.desc}</p>
               </div>
-            </FadeIn>
+            </div>
           ))}
         </div>
       </div>
